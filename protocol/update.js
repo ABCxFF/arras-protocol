@@ -117,7 +117,7 @@ class UpdateParser {
     this._table(rot, (id) => {
       const index = this.entities.findIndex(ent => ent.id === id);
       if (index === -1) {
-        return console.warn('Possible desync, deletion of non existant entity ' + id, this.entities.findIndex(ent => ent.id2 === id), JSON.stringify(this.entities));
+        return console.warn('Possible desync, deletion of non existent entity ' + id, this.entities.findIndex(ent => ent.id2 === id), JSON.stringify(this.entities));
       }
       this.entities[index] = this.entities[this.entities.length - 1]
       --this.entities.length;
