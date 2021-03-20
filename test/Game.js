@@ -175,9 +175,12 @@ class Game {
 			name[(i + 1)] = value;
 			i++;
 		}
-		name = name.filter(({ id: U }) => !filter.includes(U));
-		return name.map(U => U.u).join(" ");
+		name = name.filter(({ id }) => !filter.includes(id));
+		return name.map(data => data.u).join(" ");
 
 	};
 
 }
+
+const game = new Game();
+console.log(game.getGamemode("oc"));
