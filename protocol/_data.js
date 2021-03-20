@@ -24,6 +24,7 @@ const entityType = {
 	SHAPE: 10
 };
 const entityFlag = {
+	BASIC: 0x00000004, // ?
 	INVINCIBLE: 0x00000008
 };
 const entityColor = {
