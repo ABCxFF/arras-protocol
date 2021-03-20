@@ -74,7 +74,7 @@ class UpdateParser {
                                              0,0,0,0,0,0,0,0,0,0].map(() => rot.nex());
     if (flags & 0x0040) {
       // Thank you Ponyo
-      const result = rot.nex();
+      const result = parseInt(rot.nex(), 36);
 
       this.player.skills = [
         (result / 0x1000000000 & 15),
