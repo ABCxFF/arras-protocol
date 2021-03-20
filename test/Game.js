@@ -139,7 +139,6 @@ class Game {
 		return this._parseGamemode(server.code.split("-")[2]);
 	}
 
-	// *** ゲームモードの解析 *** //
 	_parseGamemode(code) {
 
 		if (!code || "%" === code) {
