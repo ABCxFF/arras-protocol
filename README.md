@@ -4,5 +4,5 @@ Some arras packet parsers and other scripts / notes
 
 
 **Thank you to:**  
-- Ponyo for helping reversing the format of the update packet v2 (Pro)
-- CX for being the dev of arras.io
+- [Ponyo](https://github.com/CantRunRiver) for helping reversing the format of the update packet v2 (Pro)
+- [CX](https://github.com/cx88) for being the dev of arras.io
