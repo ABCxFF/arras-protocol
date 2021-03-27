@@ -105,23 +105,28 @@ u {
 		number(camera_fov)
 		number(camera_vx)
 		number(camera_vy)
-
-		number(updated_flag) {
-			0x00000001:
+		number(updated_flags) {
+			0x00000001: {
 				number(fps)
-			0x00000002:
+			}
+			0x00000002: {
 				number(body_type)
 				number(body_color)
 				number(body_id)
-			0x00000004:
+			}
+			0x00000004: {
 				number(score)
-			0x00000008:
+			}
+			0x00000008: {
 				number(points)
-			0x00000010:
-				number(tanks)
+			}
+			0x00000010: {
+				number(tanks) {
 					number(index)
 					...
-			0x00000020:
+				}
+			}
+			0x00000020: {
 				number(???) number(???) number(???)
 				number(???) number(???) number(???)
 				number(???) number(???) number(???)
@@ -132,9 +137,10 @@ u {
 				number(???) number(???) number(???)
 				number(???) number(???) number(???)
 				number(???) number(???) number(???)
-			0x00000040:
+			}
+			0x00000040: {
 				const result = parseInt(string(skills_data), 36)
-				skills = [
+				const skills = [
 					(result / 0x1000000000 & 15),
 					(result / 0x0100000000 & 15),
 					(result / 0x0010000000 & 15),
@@ -146,16 +152,97 @@ u {
 					(result / 0x0000000010 & 15),
 					(result / 0x0000000001 & 15)
 				]
-			0x00000080:
+			}
+			0x00000080: {
 				number(???)
-			0x00000100:
+			}
+			0x00000100: {
 				number(???)
-			0x00000200:
+			}
+			0x00000200: {
 				number(party)
-			0x00000400:
+			}
+			0x00000400: {
 				number(???)
+			}
 		}
 	<entities>
-	
+		number(???)
+		while (true) {
+			number(deleted_id)
+			if (deleted_id == -1) break
+			...
+		}
+		while (true) {
+			number(updated_id)
+			if (updated_id == -1) break
+			...
+			<parse_entity>
+		}
 }
+```
+```
+<parse_entity>
+	number(updated_flags) {
+		0x00000001: {
+			const real_x = (number(x) * 0.0625)
+			const real_y = (number(y) * 0.0625)
+		}
+		0x00000002: {
+			const real_facing = (number(facing) * (360 / 256))
+		}
+		0x00000004: {
+			number(flags)
+		}
+		0x00000008: {
+			const health_percentage = (number(health) / 255);
+		}
+		0x00000010: {
+			const shield_percentage = (number(shield) / 255);
+		}
+		0x00000020: {
+			const opacity_percentage = (number(opacity) / 255);
+		}
+		0x00000040: {
+			const real_size = (number(size) * 0.0625)
+		}
+		0x00000080: {
+			number(score)
+		}
+		0x00000100: {
+			string(name)
+		}
+		0x00000200: {
+			number(???)
+		}
+		0x00000400: {
+			number(color)
+		}
+		0x00000800: {
+			number(type)
+		}
+		0x00001000: {
+			while (true) {
+				number(gun_id)
+				if (gun_id == -1) break
+				number(gun_flags): {
+					0x00000001: {
+						number(gun_time)
+					}
+					0x00000002: {
+						number(gun_power)
+					}
+				}
+				...
+			}
+		}
+		0x00002000: {
+			while (true) {
+				number(turret_id)
+				if (turret_id == -1) break
+				<parse_entity>
+				...
+			}
+		}
+	}
 ```
