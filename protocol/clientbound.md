@@ -12,12 +12,13 @@
 ## Broadcast
 Structure：
 ```
-b
+b {
 	<global_minimap>
-		number(deleted entities)
+		number(deleted_entities) {
 			number(id)
 			...
-		number(updated entities)
+		}
+		number(updated_entities) {
 			number(id)
 			number(type)
 			number(x)
@@ -25,21 +26,25 @@ b
 			number(color)
 			number(size)
 			...
+		}
 	<team_minimap>
-		number(deleted entities)
+		number(deleted_entities) {
 			number(id)
 			...
-		number(updated entities)
+		}
+		number(updated_entities) {
 			number(id)
 			number(x)
 			number(y)
 			number(size)
 			...
+		}
 	<scoreboard>
-		number(deleted entities)
+		number(deleted_entities) {
 			number(id)
 			...
-		number(updated entities)
+		}
+		number(updated_entities) {
 			number(id)
 			number(score)
 			number(index)
@@ -47,44 +52,110 @@ b
 			number(color)
 			number(barColor)
 			...
+		}
+}
 ```
 
 ## Record
 Structure：
 ```
-F
+F {
 	(???)
+}
 ```
 
 ## Kicked
 Structure：
 ```
-K
+K {
 	string(reason)
+}
 ```
 
 ## Message
 Structure：
 ```
-m
+m {
 	string(content)
+}
 ```
 
 ## Pong
 Structure：
 ```
-p
+p {
+}
 ```
 
 ## Room
 Structure：
 ```
-R
+R {
+	(???)
+}
 ```
 
 ## Update
 Structure：
 ```
-u
+u {
+	<player(you)>
+		number(camera_x)
+		number(camera_y)
+		number(camera_fov)
+		number(camera_vx)
+		number(camera_vy)
 
+		number(updated_flag) {
+			0x00000001:
+				number(fps)
+			0x00000002:
+				number(body_type)
+				number(body_color)
+				number(body_id)
+			0x00000004:
+				number(score)
+			0x00000008:
+				number(points)
+			0x00000010:
+				number(tanks)
+					number(index)
+					...
+			0x00000020:
+				number(???) number(???) number(???)
+				number(???) number(???) number(???)
+				number(???) number(???) number(???)
+				number(???) number(???) number(???)
+				number(???) number(???) number(???)
+				number(???) number(???) number(???)
+				number(???) number(???) number(???)
+				number(???) number(???) number(???)
+				number(???) number(???) number(???)
+				number(???) number(???) number(???)
+			0x00000040:
+				const result = parseInt(string(skills_data), 36)
+				skills = [
+					(result / 0x1000000000 & 15),
+					(result / 0x0100000000 & 15),
+					(result / 0x0010000000 & 15),
+					(result / 0x0001000000 & 15),
+					(result / 0x0000100000 & 15),
+					(result / 0x0000010000 & 15),
+					(result / 0x0000001000 & 15),
+					(result / 0x0000000100 & 15),
+					(result / 0x0000000010 & 15),
+					(result / 0x0000000001 & 15)
+				]
+			0x00000080:
+				number(???)
+			0x00000100:
+				number(???)
+			0x00000200:
+				number(party)
+			0x00000400:
+				number(???)
+		}
+	<entities>
+	
+}
 ```
