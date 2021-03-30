@@ -1,6 +1,6 @@
 const request = require("sync-request");
 
-class Game {
+class APIClient {
 
 	constructor() {
 
@@ -181,5 +181,5 @@ class Game {
 
 }
 
-const game = new Game();
-console.log(game.getGamemode("oc"));
+const api= new APIClient();
+console.log(api.getGamemode("oc"));
