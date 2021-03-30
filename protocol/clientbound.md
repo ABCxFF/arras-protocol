@@ -8,6 +8,7 @@
 |`p`|Pong|Ping → pong packet|
 |`R`|Room|Information about the arena|
 |`u`|Update|Information about a player or entities|
+|`w`|Welcome|Welcomes the player and tells the client what is required to connect|
 
 ## Broadcast
 Structure：
