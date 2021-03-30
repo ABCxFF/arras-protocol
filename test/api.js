@@ -123,8 +123,8 @@ class APIClient {
 
 	_getServers() {
 		if (this.servers == null) {
-			const responce = request("GET", "https://n15rqgeh01clbn7n.d.nsrv.cloud:2222/status");
-			const json = JSON.parse(responce.body.toString());
+			const response = request("GET", "https://n15rqgeh01clbn7n.d.nsrv.cloud:2222/status");
+			const json = JSON.parse(response.body.toString());
 			const servers = json.status;
 			this.servers = servers;
 		}
