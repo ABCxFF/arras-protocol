@@ -152,12 +152,9 @@ class Client {
 		if (name.length == 0) {
 			return "Unknown";
 		}
-		for (let i = 0; ((i + 1) < name.length); i++) {
-			const value = name[i];
-			name[i] = name[(i + 1)];
-			name[(i + 1)] = value;
-			i++;
-		}
+
+		tags.map((n, i, l) => l[i + Math.pow(-1, i)]);
+
 		name = name.filter(({ id }) => !filter.includes(id));
 		return name.map(data => data.u).join(" ");
 	};
