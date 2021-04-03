@@ -153,10 +153,7 @@ class Client {
 			return "Unknown";
 		}
 
-		name.map((n, i, l) => l[i + Math.pow(-1, i)]);
-
-		name = name.filter(({ id }) => !filter.includes(id));
-		return name.map(data => data.u).join(" ");
+		return name.map((n, i, l) => l[i + Math.pow(-1, i)]).filter(({ id }) => !filter.includes(id)).map(data => data.u).join(" ");
 	};
 
 	// Get
