@@ -1,124 +1,123 @@
 const request = require("sync-request");
 
+const gamemodeTable = [
+	[
+		{
+			id: "x",
+			u: "Private"
+		}
+	],
+	[
+		{
+			id: "e",
+			Hb: "word"
+		}
+	],
+	[
+		{
+			id: "w",
+			Hb: "words"
+		}
+	],
+	[
+		{
+			id: "p",
+			u: "Portal"
+		}
+	],
+	[
+		{
+			id: "o",
+			u: "Open"
+		}
+	],
+	[
+		{
+			id: "m",
+			u: "Maze",
+			delay: !0,
+			remove: "f"
+		}
+	],
+	[
+		{
+			id: "f",
+			u: "FFA"
+		},
+		{
+			id: "d",
+			u: "Duos"
+		},
+		{
+			id: "s",
+			u: "Squads"
+		},
+		{
+			id: "1",
+			u: "1 Team",
+			advance: !0
+		},
+		{
+			id: "2",
+			u: "2 Team",
+			advance: !0,
+			end: "2TDM"
+		},
+		{
+			id: "3",
+			u: "3 Team",
+			advance: !0,
+			end: "3TDM"
+		},
+		{
+			id: "4",
+			u: "4 Team",
+			advance: !0,
+			end: "4TDM"
+		}
+	],
+	[
+		{
+			id: "d",
+			u: "Domination"
+		},
+		{
+			id: "m",
+			u: "Mothership",
+			remove: "2"
+		},
+		{
+			id: "a",
+			u: "Assault",
+			remove: ["2", "m"]
+		},
+		{
+			id: "s",
+			u: "Siege",
+			remove: "1"
+		},
+		{
+			id: "t",
+			u: "Tag",
+			remove: ["o", "4"]
+		},
+		{
+			id: "p",
+			u: "Pandemic",
+			remove: ["o", "2"]
+		},
+		{
+			id: "z",
+			u: "Sandbox"
+		}
+	]
+];
+
 class APIClient {
 
 	constructor() {
-
-		this.gamemodeTable = [
-			[
-				{
-					id: "x",
-					u: "Private"
-				}
-			],
-			[
-				{
-					id: "e",
-					Hb: "word"
-				}
-			],
-			[
-				{
-					id: "w",
-					Hb: "words"
-				}
-			],
-			[
-				{
-					id: "p",
-					u: "Portal"
-				}
-			],
-			[
-				{
-					id: "o",
-					u: "Open"
-				}
-			],
-			[
-				{
-					id: "m",
-					u: "Maze",
-					delay: true,
-					remove: "f"
-				}
-			],
-			[
-				{
-					id: "f",
-					u: "FFA"
-				},
-				{
-					id: "table",
-					u: "Duos"
-				},
-				{
-					id: "s",
-					u: "Squads"
-				},
-				{
-					id: "1",
-					u: "1tdm",
-					advance: true
-				},
-				{
-					id: "2",
-					u: "2tdm",
-					advance: true,
-					end: "2TDM"
-				},
-				{
-					id: "3",
-					u: "3tdm",
-					advance: true,
-					end: "3TDM"
-				},
-				{
-					id: "4",
-					u: "4tdm",
-					advance: true,
-					end: "4TDM"
-				}
-			],
-			[
-				{
-					id: "table",
-					u: "Domination"
-				},
-				{
-					id: "m",
-					u: "Mothership",
-					remove: "2"
-				},
-				{
-					id: "a",
-					u: "Assault",
-					remove: ["2", "m"]
-				},
-				{
-					id: "s",
-					u: "Siege",
-					remove: "1"
-				},
-				{
-					id: "t",
-					u: "Tag",
-					remove: ["o", "4"]
-				},
-				{
-					id: "p",
-					u: "Pandemic",
-					remove: ["o", "2"]
-				},
-				{
-					id: "z",
-					u: "Sandbox"
-				}
-			]
-		];
-
+		this.servers = null;
 		this._getServers();
-
 	}
 
 	_getServers() {
@@ -148,8 +147,8 @@ class APIClient {
 		let name = [],
 			filter = [];
 		let at = 0;
-		let table = this.gamemodeTable;
-		for (const games of this.gamemodeTable) {
+		let table = gamemodeTable;
+		for (const games of gamemodeTable) {
 			for (const game of games) {
 				if (game.id === code.charAt(at)) {
 					at++;
@@ -181,5 +180,5 @@ class APIClient {
 
 }
 
-const api= new APIClient();
-console.log(api.getGamemode("oc"));
+const api = new APIClient();
+console.log(api.getGamemode("ba"));
