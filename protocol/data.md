@@ -24,7 +24,7 @@
 |Type|Value|
 |:-:|:-:|
 |???|`0x00000004`|
-|Invincible|`0x00000008`|
+|Flashing|`0x00000008`|
 
 ## Colors
 ```
