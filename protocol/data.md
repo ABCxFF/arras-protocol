@@ -4,13 +4,13 @@
 
 |Key|Value|
 |:-:|:-:|
-|↑|`0x00000001`|
-|↓|`0x00000002`|
-|←|`0x00000004`|
-|→|`0x00000008`|
+|Key Down (Up)|`0x00000001`|
+|Key Down (Down)|`0x00000002`|
+|Key Down (Left)|`0x00000004`|
+|Key Down (Right)|`0x00000008`|
 |Mouse Down (Left)|`0x00000010`|
 |Mouse Down (Middle)|`0x00000020`|
-|Mouse Down(Right)|`0x00000040`|
+|Mouse Down (Right)|`0x00000040`|
 
 ## Entity Related
 ### Type
@@ -23,6 +23,7 @@
 ### Flag
 |Type|Value|
 |:-:|:-:|
+|???|`0x00000004`|
 |Invincible|`0x00000008`|
 
 ## Colors
