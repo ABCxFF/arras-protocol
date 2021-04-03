@@ -113,37 +113,23 @@ const gamemodeTable = [
 	]
 ];
 
-class APIClient {
+class Client {
 
+	// Constructor
 	constructor() {
-		this.servers = null;
-		this._getServers();
+		this.servers = this.get.servers();
 	}
 
-	_getServers() {
-		if (this.servers == null) {
-			const response = request("GET", "https://n15rqgeh01clbn7n.d.nsrv.cloud:2222/status");
-			const json = JSON.parse(response.body.toString());
-			const servers = json.status;
-			this.servers = servers;
-		}
-		return this.servers;
+	// Check the server
+	_serverExists(id) {
+		return this.servers.hasOwnProperty(`#${id}`);
 	}
 
-	getGamemode(id) {
-		if (!this.servers.hasOwnProperty(`#${id}`)) {
-			return null;
-		}
-		const server = this.servers[`#${id}`];
-		return this._parseGamemode(server.code.split("-")[2]);
-	}
-
+	// Server code → Gamemode
 	_parseGamemode(code) {
-
 		if (!code || "%" === code) {
 			return "Unknown";
 		}
-
 		let name = [],
 			filter = [];
 		let at = 0;
@@ -166,7 +152,6 @@ class APIClient {
 		if (name.length == 0) {
 			return "Unknown";
 		}
-
 		for (let i = 0; ((i + 1) < name.length); i++) {
 			const value = name[i];
 			name[i] = name[(i + 1)];
@@ -175,10 +160,60 @@ class APIClient {
 		}
 		name = name.filter(({ id }) => !filter.includes(id));
 		return name.map(data => data.u).join(" ");
-
 	};
+
+	// Get
+	get get() {
+		return {
+
+			// Get all servers
+			servers: () => {
+				const response = request("GET", "https://n15rqgeh01clbn7n.d.nsrv.cloud:2222/status");
+				if (response.statusCode != 200) {
+					throw new Error(`status code: ${response.statusCode}`);
+				}
+				const json = JSON.parse(response.body.toString());
+				const servers = json.status;
+				return servers;
+			},
+
+			// Get server
+			server: (id) => {
+				if (!this._serverExists(id)) {
+					throw new Error("the server does not exist");
+				}
+				return this.servers[`#${id}`];
+			},
+
+			// Server ID → Gamemode
+			gamemode: (id) => {
+				if (!this._serverExists(id)) {
+					throw new Error("the server does not exist");
+				}
+				const server = this.get.server(id);
+				return this._parseGamemode(server.code.split("-")[2]);
+			},
+
+			// Get mockups.json
+			mockups: (id) => {
+				if (!this._serverExists(id)) {
+					throw new Error("the server does not exist");
+				}
+				const server = this.get.server(id);
+				const url = `https://${server.host}/mockups.json`;
+				const response = request("GET", url);
+				if (response.statusCode != 200) {
+					throw new Error(`status code: ${response.statusCode}`);
+				}
+				const mockups = JSON.parse(response.body.toString());
+				return mockups;
+			}
+
+		}
+	}
 
 }
 
-const api = new APIClient();
-console.log(api.getGamemode("ba"));
+const client = new Client();
+console.log(client.get.gamemode("ba"));
+// console.log(client.get.mockups("ba"));
