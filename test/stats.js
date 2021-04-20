@@ -18,7 +18,7 @@ usage:  {
 
   setInterval(() => {
     console.log('Calculated time alive: ' + StatMonitor.beautifyTime(stats.timeAlive));
-    console.log('Calculated kill count: ' + stats.killCount);
+    console.log('Calculated kill count: ' + stats.getKills().length);
   });
 
 }
