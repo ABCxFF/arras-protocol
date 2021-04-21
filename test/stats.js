@@ -1,3 +1,5 @@
+/** @global {world, coder} */
+
 class StatMonitor {
   constructor(ws) {
     this.ws = ws;
