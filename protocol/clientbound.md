@@ -61,7 +61,14 @@ b {
 Structure：
 ```
 F {
-	(???)
+	number(score)
+	number(seconds)
+	number(player_kills)
+	number(assists)
+	number(boss_kills)
+	number(killers_length)
+	number(killers)
+	...
 }
 ```
 
