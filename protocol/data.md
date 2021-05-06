@@ -23,7 +23,7 @@
 ### Flag
 |Type|Value|
 |:-:|:-:|
-|???|`0x00000004`|
+|Display Health|`0x00000004`|
 |Flashing|`0x00000008`|
 
 ## Colors
