@@ -117,7 +117,7 @@ class UpdateParser {
     this._table(rot, (id) => {
       const index = this.entities.findIndex(ent => ent.id === id);
       if (index === -1) {
-        return console.warn('Possible desync, deletion of non existent entity ' + id, this.entities.findIndex(ent => ent.id2 === id), JSON.stringify(this.entities));
+        return console.warn('Possible desync, deletion of non existent entity ' + id);
       }
       this.entities[index] = this.entities[this.entities.length - 1]
       --this.entities.length;
@@ -155,7 +155,7 @@ class UpdateParser {
     if (flags & 0x0040) ent.size = rot.nex() * 0.0625;
     if (flags & 0x0080) ent.score = rot.nex();
     if (flags & 0x0100) ent.name = rot.nex();
-    if (flags & 0x0200) ent.id2 = rot.nex(); // Only thing with unknown purpose as of now. Maybe equivalent to old `type`?
+    if (flags & 0x0200) ent.mockupIndex = rot.nex();
     if (flags & 0x0400) ent.color = rot.nex();
     if (flags & 0x0800) ent.layer = rot.nex();
     if (flags & 0x1000) {
