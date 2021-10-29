@@ -10,7 +10,7 @@ class RecordParser {
         this.killersLength = null;
         this.killers = [];
         this.baseCooldown = null;
-		this.scoreCode = null;
+	this.scoreCode = null;
     }
 
     parse(packet) {
@@ -25,12 +25,12 @@ class RecordParser {
         this.killCount.bosses = packet.shift();
 
         this.killersLength = packet.shift();
-		this.killers = packet.slice(0, this.killersLength);
+	this.killers = packet.slice(0, this.killersLength);
 			
-		packet = packet.slice(this.killersLength);
+	packet = packet.slice(this.killersLength);
 
-		this.baseCooldown = packet.shift();
-		this.scoreCode = packet.shift() || null; 
+	this.baseCooldown = packet.shift();
+	this.scoreCode = packet.shift() || null; 
 
         return this;
     }
