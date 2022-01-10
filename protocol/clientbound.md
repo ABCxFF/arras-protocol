@@ -68,7 +68,8 @@ F {
 	number(boss_kills)
 	number(killers_length)
 	number(killers)
-	...
+	number(baseCooldown)
+	number(scoreCode)
 }
 ```
 
