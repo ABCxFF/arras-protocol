@@ -95,6 +95,7 @@ m {
 Structure：
 ```
 p {
+	number( Math.floor(65536 * Math.random()) )
 }
 ```
 
