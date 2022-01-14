@@ -9,6 +9,7 @@
 |`R`|Room|Information about the arena|
 |`u`|Update|Information about a player or entities|
 |`w`|Welcome|Welcomes the player and tells the client what is required to connect|
+|`J`|Mockups|Entity mockups data|
 
 ## Broadcast
 Structure：
@@ -254,4 +255,14 @@ u {
 			}
 		}
 	}
+```
+
+## Mockups
+Structure:
+```
+J {
+	number(index)
+	string(mockup)
+	...
+}
 ```
