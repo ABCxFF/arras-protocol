@@ -69,7 +69,7 @@ F {
 	number(killers_length)
 	number(killers)
 	number(baseCooldown)
-	number(scoreCode)
+	string(???)
 }
 ```
 
