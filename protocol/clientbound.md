@@ -10,6 +10,7 @@
 |`u`|Update|Information about a player or entities|
 |`w`|Welcome|Welcomes the player and tells the client what is required to connect|
 |`J`|Mockups|Entity mockups data|
+|`c`|Spawn Animation|Information about the spawning camera animation|
 
 ## Broadcast
 Structure：
@@ -264,5 +265,15 @@ J {
 	number(index)
 	string(mockup)
 	...
+}
+```
+
+## Spawn Animation
+Structure:
+```
+c {
+	number(x)
+	number(y)
+	number(zoom)
 }
 ```
