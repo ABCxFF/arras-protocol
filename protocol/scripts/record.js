@@ -1,37 +1,56 @@
+function rotator(packet) {
+	return {
+		i: 0,
+		arr: packet,
+		get(index) {
+			return packet[index];
+		},
+		set(index, value) {
+			return (packet[index] = value);
+		},
+		nex() {
+			if (this.i === this.arr.length) {
+				console.error(new Error('End reached'), this.arr)
+				return -1;
+			}
+			return packet[this.i++];
+		},
+	};
+}
+
 class RecordParser {
-    constructor() {
-        this.score = null;
-        this.seconds = null;
-        this.killCount = {
-            players: null,
-            assists: null,
-            bosses: null
-        };
-        this.killersLength = null;
-        this.killers = [];
-        this.baseCooldown = null;
-	this.scoreCode = null;
-    }
+	constructor() {
+		this.score = null;
+		this.seconds = null;
+		this.killCount = {
+			players: null,
+			assists: null,
+			bosses: null
+		};
+		this.killersLength = null;
+		this.killers = [];
+		this.baseCooldown = null;
+	}
 
-    parse(packet) {
-        const header = packet.shift();
-        if (header !== 'F') throw new TypeError('Invalid packet header; expected packet `F`');
+	parse(packet) {
+		const rot = rotator(packet);
 
-        this.score = packet.shift();
-        this.seconds = packet.shift();
+		if (rot.nex() !== 'F') throw new TypeError('Invalid packet header; expected packet `F`');
 
-        this.killCount.players = packet.shift();
-        this.killCount.assists = packet.shift();
-        this.killCount.bosses = packet.shift();
+		this.score = rot.nex();
+		this.seconds = rot.nex();
 
-        this.killersLength = packet.shift();
-	this.killers = packet.slice(0, this.killersLength);
-			
-	packet = packet.slice(this.killersLength);
+		this.killCount.players = rot.nex();
+		this.killCount.assists = rot.nex();
+		this.killCount.bosses = rot.nex();
 
-	this.baseCooldown = packet.shift();
-	this.scoreCode = packet.shift() || null; 
+		this.killersLength = rot.nex();
+		for (let i = 0; i < this.killersLength; i++) {
+			this.killers.push(rot.nex());
+		}
+		
+		this.baseCooldown = rot.nex();
 
-        return this;
-    }
+		return this;
+	}
 }
